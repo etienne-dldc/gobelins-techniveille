@@ -1,24 +1,21 @@
 import React, { PropTypes } from 'react'
 import { connect } from 'react-redux'
-import { Link } from 'react-router'
 
 const mapStateToProps = (state) => {
   return {}
 }
-export class Home extends React.Component {
+export class Articles extends React.Component {
   static propTypes = {
     // state
-    children: PropTypes.element
   };
 
   render () {
     return (
       <div>
-        <h1>My Home</h1>
-        <Link to='/articles'>Voir les articles</Link>
+        <h1>My Articles</h1>
       </div>
     )
   }
 }
 
-export default connect(mapStateToProps)(Home)
+export default connect(mapStateToProps)(Articles)

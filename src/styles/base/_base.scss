@@ -1,0 +1,10 @@
+html {
+	* {
+		box-sizing : border-box;
+	}
+}
+html,body {
+	font-family: $typo-content;
+	font-size: 10px;
+	background: #fff;
+}

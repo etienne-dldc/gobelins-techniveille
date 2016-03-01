@@ -1,0 +1,27 @@
+.tpl-single {
+	position: relative;
+
+	@media (max-width: $tablet-breakpoint) {
+		height: 100vh;
+	}
+}
+
+.tpl-green {
+	//background : $green;
+	.article__btn {
+		border-color: $green;
+		color: $green;
+		&:hover,&:active,&:focus {
+			background: $green;
+		}
+	}
+
+	.pagination__btn {
+		border-color: $green;
+		color: $green;
+	}
+
+	.pagination__number {
+		color: $green;
+	}
+}

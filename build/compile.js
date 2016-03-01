@@ -1,7 +1,6 @@
 require('babel-register')
 
-var webpack = require('webpack');
-var webpackDevServer = require('webpack-dev-server')
+var webpack = require('webpack')
 var debug = require('debug')('dev:webpack')
 var colors = require('colors')
 

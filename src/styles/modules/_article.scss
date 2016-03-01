@@ -1,0 +1,93 @@
+.article {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	height: 100vh;
+	width: 84rem;
+	margin: 0 auto;
+
+	&__icon {
+		height: 4rem;
+		width: 4rem;
+		margin-left: 8.5rem;
+		background: $green;
+		transform: translate(-50%,50%);
+	}
+
+	&__img {
+		display: block;
+		height: auto;
+		max-width: 100%;
+		margin: 0 auto;
+	}
+
+	&__title {
+		margin-bottom: 1rem;
+		font-size: 3rem;
+		font-family: $typo-heading;
+		text-transform: uppercase;
+		letter-spacing: 1px;
+		transform: translateY(-50%);
+	}
+
+	&__content {
+		margin: 0 0 4rem 4.5rem;
+		font-family: $typo-content;
+		font-size: 1.5rem;
+		line-height: 1.5em;	
+	}
+
+	&__btn {
+		width: 22rem;
+		margin-left: 8.5rem;
+		border: 2px solid #000;
+		text-align: center;
+		line-height: 4rem;
+		font-family: $typo-heading;
+		font-size: 1.4rem;
+		font-weight: bold;
+		text-transform: uppercase;
+		letter-spacing: 1px;
+		color: #fff;
+
+		transition: all 0.15s ease-out;
+
+		&:hover,&:active,&:focus {
+			color: #fff;
+		}
+	}
+
+	@media (max-width: $tablet-breakpoint) {
+		//height: auto;
+		width: 100%;
+		padding: 0 3rem;
+
+		&__icon {
+			display: none;
+			margin-left: 0;
+		}
+
+		&__img {
+			width: 100%;
+			margin-bottom: 1rem;
+		}
+
+		&__title {
+			transform: translateY(0);
+			//margin-bottom: 1.5rem;
+		}
+
+		&__content {
+			margin-left: 0;
+		}
+
+		&__btn {
+			margin-left: 0;
+		}
+	}
+
+	@media (max-width: $mobile-breakpoint) {
+		height: auto;
+		padding: 0 1.5rem;
+	}
+}

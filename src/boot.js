@@ -1,17 +1,20 @@
+console.log('boot')
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { createHistory } from 'history'
+import { hashHistory } from 'react-router'
+import { syncHistoryWithStore, routerReducer } from 'react-router-redux'
+
+import logger from './core/logger'
 import configureStore from './core/configureStore.js'
-import { useRouterHistory } from 'react-router'
 import Root from './core/RootComponent'
 import routes from './core/routes'
 
 // Import style
 import './styles/app.scss'
 
-const historyConfig = {}
-const history = useRouterHistory(createHistory)(historyConfig)
-const store = configureStore({ history })
+const store = configureStore()
+// Create History
+const history = syncHistoryWithStore(hashHistory, store)
 
 // Remove splashscreen
 const splashscreen = document.getElementById('splashscreen')

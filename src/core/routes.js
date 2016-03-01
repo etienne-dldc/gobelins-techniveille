@@ -1,16 +1,17 @@
 import App from '../components/App'
 import Home from '../components/Home'
+import Menu from '../components/Menu'
+import Articles from '../components/Articles'
 
 export default [
   { path: '/',
     component: App,
     indexRoute: {
-      onEnter (location, replace) {
-        replace({ pathname: '/home' })
-      }
+      component: Home
     },
     childRoutes: [
-      { path: '/home', component: Home }
+      { path: '/articles', component: Menu },
+      { path: '/article/:article', component: Articles }
     ]
   }
 

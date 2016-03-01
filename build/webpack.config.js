@@ -51,10 +51,23 @@ webpackConfig.output = {
     filename: '[name].[id].[hash].js'
 }
 
-
+const environment = process.env.NODE_ENV
+const __DEV__ = environment === 'development'
 webpackConfig.plugins = [
     // Avoid publishing files when compilation fails
     new webpack.NoErrorsPlugin(),
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': `'${environment}'`,
+      'NODE_ENV': environment + '',
+      '__DEV__': __DEV__,
+      '__PROD__': environment === 'production',
+      '__TEST__': environment === 'test',
+      '__DEBUG__': environment === 'development',
+      '__BASENAME__': JSON.stringify(process.env.BASENAME || '')
+    }),
+    new webpack.ProvidePlugin({
+      Promise: 'imports?this=>global!exports?global.Promise!es6-promise'
+    }),
     new CopyWebpackPlugin([{
       from: 'src/static/',
       toType: 'file'
@@ -76,13 +89,16 @@ webpackConfig.module = {
 };
 
 webpackConfig.module.loaders.push({
-  loader: 'babel-loader',
   test: /\.(js|jsx)$/,
   exclude: /node_modules/,
-  plugins: ['add-module-exports', 'transform-runtime'],
+  loader: 'babel',
   query: {
-    presets: ['es2015', 'react', 'stage-0']
-  },
+    cacheDirectory: true,
+    plugins: ['add-module-exports', 'transform-runtime'],
+    presets: __DEV__
+      ? ['es2015', 'react', 'stage-0']
+      : ['es2015', 'react', 'stage-0']
+  }
 });
 
 webpackConfig.module.loaders.push({
