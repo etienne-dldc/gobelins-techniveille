@@ -1,5 +1,5 @@
 .tags {
-	height: $main-nav-padding;	
+	height: $main-nav-padding;
 
 	&__list {
 		display: flex;
@@ -8,7 +8,7 @@
 		align-items: center;
 		height: 100%;
 	}
-	
+
 	&__item {
 		+ .tags__item {
 			&:before {
@@ -49,10 +49,10 @@
 	&--dropdown {
 		position: relative;
 		height: auto;
-		width: 12rem;
+		width: 15rem;
 
 		.tags__btn-dropdown {
-			width: 12rem;
+			width: 15rem;
 			font-family: $typo-heading;
 			font-size: 1.4rem;
 			text-transform: uppercase;
@@ -64,12 +64,12 @@
 			z-index: 3;
 			flex-direction: column;
 			height: auto;
-			width: 12rem;
+			width: 15rem;
 			padding : 0 2rem;
 			background: #fff;
-			visibility: hidden;	
+			visibility: hidden;
 		}
-		
+
 		.tags__item {
 			width: 100%;
 			+ .tags__item {

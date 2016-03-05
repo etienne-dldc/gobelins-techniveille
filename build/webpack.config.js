@@ -3,6 +3,7 @@ var webpack = require('webpack');
 var cssnano = require('cssnano');
 var HtmlWebpackPlugin = require('html-webpack-plugin')
 var CopyWebpackPlugin = require('copy-webpack-plugin')
+var debug = require('debug')('app:webapck')
 
 var dir_base = path.resolve(__dirname, '..');
 var dir_src = path.resolve(dir_base, 'src');
@@ -29,12 +30,12 @@ var webpackConfig = {
   devServer: {
     contentBase: dir_dist,
   },
-  resolve: {
-    root: dir_src,
-  },
   stats: {
     // Nice colored output
     colors: true
+  },
+  resolve: {
+    extensions: ["", ".webpack.js", ".web.js", ".js", ".jsx"]
   },
   // Create source maps for the bundle
   devtool: 'source-map',
@@ -53,6 +54,7 @@ webpackConfig.output = {
 
 const environment = process.env.NODE_ENV
 const __DEV__ = environment === 'development'
+const __PROD__ = environment === 'production'
 webpackConfig.plugins = [
     // Avoid publishing files when compilation fails
     new webpack.NoErrorsPlugin(),
@@ -71,35 +73,65 @@ webpackConfig.plugins = [
     new CopyWebpackPlugin([{
       from: 'src/static/',
       toType: 'file'
-    }]),
-    new HtmlWebpackPlugin({
-      template: path.resolve(dir_src, 'index.html'),
-      hash: false,
-      filename: 'index.html',
-      inject: 'body',
-      chunks: ['app', 'vendor'],
-      minify: {
-        collapseWhitespace: true
+    }])
+];
+
+if (__DEV__) {
+  debug('Enable plugins for live development (HMR, NoErrors).')
+  webpackConfig.plugins.push(
+    new webpack.optimize.OccurenceOrderPlugin(),
+    new webpack.HotModuleReplacementPlugin()
+  )
+} else if (__PROD__) {
+  debug('Enable plugins for production (OccurenceOrder, Dedupe & UglifyJS).')
+  webpackConfig.plugins.push(
+    new webpack.optimize.OccurrenceOrderPlugin(),
+    new webpack.optimize.DedupePlugin(),
+    new webpack.optimize.UglifyJsPlugin({
+      compress: {
+        unused: true,
+        dead_code: true,
+        warnings: false
       }
     })
-];
+  )
+}
+
+webpackConfig.plugins.push(new HtmlWebpackPlugin({
+  template: path.resolve(dir_src, 'index.html'),
+  hash: false,
+  filename: 'index.html',
+  inject: 'body',
+  chunks: ['vendor', 'app'],
+  minify: {
+    collapseWhitespace: true
+  }
+}))
 
 webpackConfig.module = {
     loaders: []
 };
 
+// webpackConfig.module.loaders.push({
+//   test: /\.(js|jsx)$/,
+//   exclude: /node_modules/,
+//   loader: 'babel',
+//   query: {
+//     cacheDirectory: true,
+//     plugins: ['add-module-exports'],
+//     presets: ['es2015', 'react', 'stage-0']
+//   }
+// });
+
 webpackConfig.module.loaders.push({
-  test: /\.(js|jsx)$/,
-  exclude: /node_modules/,
-  loader: 'babel',
+  test: /\.jsx?$/,
+  exclude: /(node_modules|bower_components)/,
+  loader: 'babel', // 'babel-loader' is also a legal name to reference
   query: {
-    cacheDirectory: true,
-    plugins: ['add-module-exports', 'transform-runtime'],
-    presets: __DEV__
-      ? ['es2015', 'react', 'stage-0']
-      : ['es2015', 'react', 'stage-0']
+    presets: ['react', 'es2015', 'stage-0'],
+    plugins: ['transform-runtime']
   }
-});
+})
 
 webpackConfig.module.loaders.push({
   test: /\.scss$/,
@@ -111,6 +143,16 @@ webpackConfig.module.loaders.push({
     'sass?sourceMap'
   ]
 })
+
+webpackConfig.module.loaders.push(
+  { test: /\.woff(\?.*)?$/,  loader: 'url?limit=10000&prefix=fonts/&name=assets/[name]-[hash].[ext]&mimetype=application/font-woff' },
+  { test: /\.woff2(\?.*)?$/, loader: 'url?limit=10000&prefix=fonts/&name=assets/[name]-[hash].[ext]&mimetype=application/font-woff2' },
+  { test: /\.otf(\?.*)?$/,   loader: 'file?limit=10000&prefix=fonts/&name=assets/[name]-[hash].[ext]&mimetype=font/opentype' },
+  { test: /\.ttf(\?.*)?$/,   loader: 'url?limit=10000&prefix=fonts/&name=assets/[name]-[hash].[ext]&mimetype=application/octet-stream' },
+  { test: /\.eot(\?.*)?$/,   loader: 'file?prefix=fonts/&name=assets/[name]-[hash].[ext]' },
+  { test: /\.svg(\?.*)?$/,   loader: 'url?limit=10000&prefix=fonts/&name=assets/[name]-[hash].[ext]&mimetype=image/svg+xml' },
+  { test: /\.(png|jpg)$/,    loader: 'file?limit=8192&name=assets/[name]-[hash].[ext]' }
+)
 
 webpackConfig.sassLoader = {}
 
