@@ -4,6 +4,7 @@ import MenuItem from './MenuItem'
 import CategorySelector from './CategorySelector'
 import CategorySelectorMobile from './CategorySelectorMobile'
 import _ from 'lodash'
+import { push } from 'react-router-redux'
 
 const mapStateToProps = ({ articles, categories }) => {
   return ({
@@ -22,7 +23,7 @@ export class Menu extends React.Component {
   };
 
   render () {
-    const { articles, categories, selectedCat } = this.props
+    const { articles, categories, selectedCat, push } = this.props
     const artsWithCat = articles.map((art) => {
       const cat = _.find(categories, {slug: art.category})
       if (cat) {
@@ -52,6 +53,8 @@ export class Menu extends React.Component {
                   cover={art.cover}
                   overlayColor={art.category.color}
                   disabled={art.disabled}
+                  acessArticle={(e) => {e.preventDefault(); push(`/article/${art.id}`)}}
+                  artUrl={`/article/${art.id}`}
                 />)
               ) }
   	  			</ul>
@@ -66,4 +69,4 @@ export class Menu extends React.Component {
   }
 }
 
-export default connect(mapStateToProps)(Menu)
+export default connect(mapStateToProps, { push })(Menu)

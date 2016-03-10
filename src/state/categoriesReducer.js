@@ -20,6 +20,9 @@ const initialState = {
 }
 export default function (state = initialState, { type, payload } ) {
   if (type === CATEGORIES_SELECT) {
+    if (state.selected == payload) {
+      payload = 'all'
+    }
     return {
       ...state,
       selected: payload

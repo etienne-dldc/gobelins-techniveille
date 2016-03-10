@@ -7,4 +7,8 @@ html,body {
 	font-family: $typo-content;
 	font-size: 10px;
 	background: #fff;
+	height: 100%;
+}
+#root {
+	height: 100%;
 }

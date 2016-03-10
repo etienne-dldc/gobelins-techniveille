@@ -19,7 +19,11 @@ const categories = [
     slug: 'art',
     color: '#bed258'
   },
-
+  {
+    name: 'Espace',
+    slug: 'espace',
+    color: '#bed258'
+  }
 ]
 
 export default categories

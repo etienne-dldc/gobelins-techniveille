@@ -12,7 +12,7 @@ import routes from './core/routes'
 // Import style
 import './styles/app.scss'
 
-const store = configureStore()
+const store = configureStore(hashHistory)
 // Create History
 const history = syncHistoryWithStore(hashHistory, store)
 

@@ -1,5 +1,6 @@
 .tpl-single {
 	position: relative;
+	height: 100%;
 
 	@media (max-width: $tablet-breakpoint) {
 		height: 100vh;

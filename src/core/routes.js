@@ -11,7 +11,7 @@ export default [
     },
     childRoutes: [
       { path: '/articles', component: Menu },
-      { path: '/article/:article', component: Articles }
+      { path: '/article/:id', component: Articles }
     ]
   }
 

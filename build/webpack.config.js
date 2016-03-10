@@ -10,6 +10,10 @@ var dir_src = path.resolve(dir_base, 'src');
 var dir_html = path.resolve(dir_base, 'html');
 var dir_dist = path.resolve(dir_base, 'dist');
 
+const environment = process.env.NODE_ENV
+const __DEV__ = environment === 'development'
+const __PROD__ = environment === 'production'
+
 var vendorList = [
   'react',
   'react-dom',
@@ -38,7 +42,7 @@ var webpackConfig = {
     extensions: ["", ".webpack.js", ".web.js", ".js", ".jsx"]
   },
   // Create source maps for the bundle
-  devtool: 'source-map',
+  devtool: (!__PROD__ ? 'source-map' : false),
 }
 
 webpackConfig.entry = {
@@ -52,9 +56,6 @@ webpackConfig.output = {
     filename: '[name].[id].[hash].js'
 }
 
-const environment = process.env.NODE_ENV
-const __DEV__ = environment === 'development'
-const __PROD__ = environment === 'production'
 webpackConfig.plugins = [
     // Avoid publishing files when compilation fails
     new webpack.NoErrorsPlugin(),
