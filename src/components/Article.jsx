@@ -29,16 +29,20 @@ export default class Article extends React.Component {
 		return list
 	}
 
+  componentDidAppear () {
+    this.componentDidEnter()
+  }
+
 	componentDidEnter () {
     if (this.anim) {
       this.anim.forEach((tween) => {tween.kill()})
     }
 		$(this.getElemsList(dir)).css('opacity', '0')
 		var dir = this.getDirection()
-		this.anim = TweenMax.staggerFromTo(this.getElemsList(dir), 0.7,
+		this.anim = TweenMax.staggerFromTo(this.getElemsList(dir), 0.4,
 			{ y: 1000*dir, opacity:0},
-			{ delay: 0.2, y: 0, opacity:1},
-			0.1
+			{ delay: 0.1, y: 0, opacity:1},
+			0.05
 		)
 	}
 
@@ -47,9 +51,9 @@ export default class Article extends React.Component {
       this.anim.forEach((tween) => {tween.kill()})
     }
 		var dir = this.getDirection()
-		this.anim = TweenMax.staggerTo(this.getElemsList(dir), 0.7,
+		this.anim = TweenMax.staggerTo(this.getElemsList(dir), 0.4,
 			{ y: -1000*dir, opacity:0 },
-			0.1,
+			0.05,
       callback
 		)
 	}

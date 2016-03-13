@@ -7,22 +7,24 @@
 	}
 }
 
-.tpl-green {
-	//background : $green;
-	.article__btn {
-		border-color: $green;
-		color: $green;
-		&:hover,&:active,&:focus {
-			background: $green;
+$list: 'green' 'blue' 'purple' 'yellow' 'red' 'brown';
+$colors: $green $blue $purple $yellow $red $brown;
+
+@for $i from 1 through length($list) {
+	.tpl-#{nth($list, $i)} {
+		.article__btn {
+			border-color: nth($colors, $i);
+			color: nth($colors, $i);
+			&:hover,&:active,&:focus {
+				background: nth($colors, $i);
+			}
 		}
-	}
-
-	.pagination__btn {
-		border-color: $green;
-		color: $green;
-	}
-
-	.pagination__number {
-		color: $green;
+		.pagination__btn {
+			border-color: nth($colors, $i);
+			color: nth($colors, $i);
+		}
+		.pagination__number {
+			color: nth($colors, $i);
+		}
 	}
 }

@@ -83,6 +83,7 @@
     "classnames": "^2.2.3",
     "gsap": "^1.18.2",
     "history": "^2.0.0",
+    "is_js": "^0.8.0",
     "jquery": "^2.2.1",
     "lodash": "^4.6.1",
     "react": "^0.14.7",
@@ -96,6 +97,7 @@
     "redux-devtools": "^3.1.1",
     "redux-devtools-dock-monitor": "^1.1.0",
     "redux-devtools-log-monitor": "^1.0.4",
-    "redux-thunk": "^2.0.1"
+    "redux-thunk": "^2.0.1",
+    "vivus": "^0.3.0"
   }
 }

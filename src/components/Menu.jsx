@@ -3,16 +3,10 @@ import { connect } from 'react-redux'
 import MenuItem from './MenuItem'
 import CategorySelector from './CategorySelector'
 import CategorySelectorMobile from './CategorySelectorMobile'
+import { Link } from 'react-router'
 import _ from 'lodash'
+import $ from 'jquery'
 import { push } from 'react-router-redux'
-
-const mapStateToProps = ({ articles, categories }) => {
-  return ({
-    articles,
-    categories: categories.data,
-    selectedCat: categories.selected
-  })
-}
 
 export class Menu extends React.Component {
   static propTypes = {
@@ -23,7 +17,7 @@ export class Menu extends React.Component {
   };
 
   render () {
-    const { articles, categories, selectedCat, push } = this.props
+    const { articles, categories, selectedCat, push, currentArt } = this.props
     const artsWithCat = articles.map((art) => {
       const cat = _.find(categories, {slug: art.category})
       if (cat) {
@@ -39,11 +33,11 @@ export class Menu extends React.Component {
     })
     return (
       <div className="main-nav">
-        <CategorySelectorMobile />
+        <CategorySelectorMobile currentArt={currentArt} />
         <CategorySelector />
   	  	<main className="main-nav__main">
   	  		<aside className="main-nav__aside main-nav__aside--left">
-  	  			<button>Retour</button>
+            { currentArt !== null ? <Link to={`/article/${currentArt}`}><button>Retour</button></Link> : '' }
   	  		</aside>
   	  		<section className="main-nav__container">
   	  			<ul className="list--nav">
@@ -53,14 +47,19 @@ export class Menu extends React.Component {
                   cover={art.cover}
                   overlayColor={art.category.color}
                   disabled={art.disabled}
-                  acessArticle={(e) => {e.preventDefault(); push(`/article/${art.id}`)}}
+                  acessArticle={(e) => {
+                    e.preventDefault();
+                    if (!art.disabled) {
+                      push(`/article/${art.id}`)
+                    }
+                  }}
                   artUrl={`/article/${art.id}`}
                 />)
               ) }
   	  			</ul>
   	  		</section>
   	  		<aside className="main-nav__aside main-nav__aside--right">
-  	  			<button>à propos</button>
+  	  			<Link to='/'><button>A propos</button></Link>
   	  		</aside>
   	  	</main>
         <CategorySelector />
@@ -69,4 +68,55 @@ export class Menu extends React.Component {
   }
 }
 
-export default connect(mapStateToProps, { push })(Menu)
+const mapStateToProps = ({ articles, categories, app }) => {
+  return ({
+    articles,
+    categories: categories.data,
+    selectedCat: categories.selected,
+    currentArt: app.currentArticle
+  })
+}
+const MenuConnected = connect(mapStateToProps, { push })(Menu)
+
+export default class MenuAnim extends React.Component {
+
+  inAnim () {
+    $(this.refs.main).css({ opacity: 0 })
+    if (this.anim) {
+      this.anim.kill()
+    }
+    this.anim = TweenMax.fromTo(this.refs.main , 0.4,
+      {scale: 2, opacity: 0, delay: 0.4},
+      {scale: 1, opacity: 1},
+    )
+  }
+
+  outAnim (cb) {
+    if (this.anim) {
+      this.anim.kill()
+    }
+    this.anim = TweenMax.to(this.refs.main , 0.4,
+      {scale: 2, opacity: 0, onComplete: cb}
+    )
+  }
+
+  componentDidAppear () {
+    this.inAnim()
+  }
+
+  componentDidEnter () {
+    this.inAnim()
+  }
+
+  componentWillLeave (cb) {
+    this.outAnim(cb)
+  }
+
+  render () {
+    return (
+      <div ref='main' style={{ height: '100%', position: 'absolute', zIndex: '1000', width: '100%', background: 'white' }}>
+        <MenuConnected {...this.props} />
+      </div>
+    )
+  }
+}

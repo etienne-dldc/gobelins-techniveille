@@ -1,24 +1,30 @@
 import articles from '../data/Articles'
 import { push } from 'react-router-redux'
 import { actions as appActions } from './appReducer'
+import is from 'is_js'
 
-const next = (currentId) => {
+const navigate = (nextId, currentId) => {
   return (dispatch, getState) => {
-    dispatch(appActions.selLastArticle(currentId, currentId+1))
-    dispatch(push(`article/${currentId+1}`));
+    dispatch(appActions.selLastArticle(currentId, nextId))
+    if (is.number(nextId)) {
+      dispatch(push(`/article/${nextId}`));
+    } else {
+      console.error('Gné ?', nextId);
+    }
   }
 }
 
-const prev = (currentId) => {
+const setCurrent = (currentId) => {
   return (dispatch, getState) => {
-    dispatch(appActions.selLastArticle(currentId, currentId-1))
-    dispatch(push(`article/${currentId-1}`));
+    if (getState().app.currentArticle !== currentId) {
+      dispatch(appActions.setCurrentArticle(currentId))
+    }
   }
 }
 
 export const actions = {
-  next,
-  prev
+  navigate,
+  setCurrent
 }
 
 

@@ -20,7 +20,6 @@
 		left: 2.5rem;
 		height: 2.5rem;
 		width: 2.5rem;
-		background: $red;
 		transform: translateY(50%);
 	}
 
@@ -51,7 +50,7 @@
 		align-items: center;
 		width: $main-nav-padding;
 
-		> button {
+		> a > button {
 			height: $main-nav-padding;
 			width: 90vh;
 			font-family: $typo-heading;
@@ -60,19 +59,19 @@
 		}
 
 		&--left {
-			> button {
+			> a {
 				transform: rotate(-90deg);
 			}
 		}
 
 		&--right {
-			> button {
+			> a {
 				transform: rotate(90deg);
 			}
 		}
 	}
 
-	@media (max-width: $desktop-breakpoint) { 
+	@media (max-width: $desktop-breakpoint) {
 		&__header {
 			display: flex;
 
@@ -92,7 +91,7 @@
 		}
 	}
 
-	@media (max-width: $mobile-breakpoint) { 
+	@media (max-width: $mobile-breakpoint) {
 		&__btn-close {
 			left: 1.5rem;
 		}

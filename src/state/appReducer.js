@@ -2,6 +2,7 @@
 const APP_CATSELECTOR_OPEN = 'APP_CATSELECTOR_OPEN'
 const APP_CATSELECTOR_CLOSE = 'APP_CATSELECTOR_CLOSE'
 const APP_SETLASTART = 'APP_SETLASTART'
+const APP_SETCURRENTART = 'APP_SETCURRENTART'
 
 const openCatSelector = function () {
   return {
@@ -27,16 +28,25 @@ const selLastArticle = (lastId, currentId) => {
   }
 }
 
+const setCurrentArticle = (currentId) => {
+  return {
+    type: APP_SETCURRENTART,
+    payload: currentId
+  }
+}
+
 export const actions = {
   openCatSelector,
   closeCatSelector,
-  selLastArticle
+  selLastArticle,
+  setCurrentArticle
 }
 
 const initialState = {
   categorySelectorOpen: false,
   lastArticle: null,
-  currentArticle: null
+  currentArticle: null,
+  // currentArticleBis: null
 }
 
 export default function  (state = initialState, { type, payload }) {
@@ -53,11 +63,19 @@ export default function  (state = initialState, { type, payload }) {
     }
   }
   if (type === APP_SETLASTART) {
-    return {
+    const newState = {
       ...state,
-      lastArticle: payload.last,
-      currentArticle: payload.current
+      lastArticle: payload.last !== null ? payload.last : state.currentArticle,
+      currentArticle: payload.current !== null ? payload.current : state.currentArticle
     }
+    return newState
+  }
+  if (type === APP_SETCURRENTART) {
+    const newState = {
+      ...state,
+      currentArticle: payload
+    }
+    return newState
   }
   return state
 }

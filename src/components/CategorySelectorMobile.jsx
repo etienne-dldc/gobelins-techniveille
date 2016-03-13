@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import classNames from 'classnames'
 import { actions as appActions } from '../state/appReducer'
 import { actions as catActions } from '../state/categoriesReducer'
+import { Link } from 'react-router'
 
 import CategorySelectorItem from './CategorySelectorItem'
 
@@ -24,12 +25,21 @@ export class CategorySelectorMobile extends React.Component {
   };
 
   render () {
-    const { articles, categories, open, openCatSelector, closeCatSelector, selectCategory, selected } = this.props
+    const { articles, categories, open, openCatSelector, closeCatSelector, selectCategory, selected, currentArt } = this.props
     const classes = classNames('tags', 'tags--dropdown', { 'is-opened': open })
     const cat = _.find(categories, {slug: selected})
+
     return (
       <header className="main-nav__header">
-        <button className="main-nav__btn-close"></button>
+        { currentArt !== null ? (
+          <Link to={`/article/${currentArt}`}>
+            <button className="main-nav__btn-close">
+              <svg version="1.1" id="Calque_1" x="0px" y="0px" viewBox="0 0 27.5 20.1">
+                <path fill={cat.color} d="M25,10.4c0-0.4-0.3-0.7-0.7-0.7H5.4l6.2-6.1c0.1-0.1,0.2-0.3,0.2-0.5s-0.1-0.4-0.2-0.5c-0.3-0.3-0.7-0.3-1,0L3.3,9.8c-0.3,0.3-0.3,0.7,0,1l7.3,7.2c0.3,0.3,0.7,0.3,1,0s0.3-0.7,0-1l-6-5.9h18.7C24.7,11.1,25,10.8,25,10.4z"/>
+              </svg>
+            </button>
+          </Link>) : '' }
+
         <div className={classes}>
           <button className="tags__btn-dropdown"  onClick={() => openCatSelector()}>
             Filtrer{ cat.slug === 'all' ? '' : (' : ') }
@@ -47,7 +57,9 @@ export class CategorySelectorMobile extends React.Component {
             }) }
           </ul>
         </div>
-        <button className="main-nav__btn-about">A propos</button>
+        <button className="main-nav__btn-about">
+          <Link to='/'>A propos</Link>
+        </button>
       </header>
     )
   }
