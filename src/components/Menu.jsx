@@ -68,7 +68,7 @@ export class Menu extends React.Component {
   }
 }
 
-const mapStateToProps = ({ articles, categories, app }) => {
+const mapStateToProps = ({ articles, categories, app }, ownProps) => {
   return ({
     articles,
     categories: categories.data,
@@ -81,13 +81,15 @@ const MenuConnected = connect(mapStateToProps, { push })(Menu)
 export default class MenuAnim extends React.Component {
 
   inAnim () {
+    const fromHome = (this.props.location && this.props.location.state && this.props.location.state.from === 'home') ? true : false
     $(this.refs.main).css({ opacity: 0 })
     if (this.anim) {
       this.anim.kill()
     }
+    const delay = fromHome ? 0.7 : 0.1
     this.anim = TweenMax.fromTo(this.refs.main , 0.4,
-      {scale: 2, opacity: 0, delay: 0.4},
-      {scale: 1, opacity: 1},
+      {scale: 2, opacity: 0},
+      {scale: 1, opacity: 1, delay: delay}
     )
   }
 
@@ -114,8 +116,8 @@ export default class MenuAnim extends React.Component {
 
   render () {
     return (
-      <div ref='main' style={{ height: '100%', position: 'absolute', zIndex: '1000', width: '100%', background: 'white' }}>
-        <MenuConnected {...this.props} />
+      <div ref='main' style={{ height: '100%', position: 'absolute', zIndex: '1000', width: '100%', background: 'white', overflow: 'hidden' }}>
+        <MenuConnected { ...this.props } />
       </div>
     )
   }

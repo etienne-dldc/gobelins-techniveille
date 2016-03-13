@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react'
 import { connect } from 'react-redux'
 import classNames from 'classnames'
 import ReactTransitionGroup from 'react-addons-transition-group'
+import CanvasBack from './CanvasBack'
 
 const mapStateToProps = (state, ownProps) => {
   return {
@@ -17,10 +18,6 @@ export class App extends React.Component {
     children: PropTypes.element
   };
 
-  handleKey (e) {
-    console.log(e)
-  }
-
   render () {
     const { articles, categories, artId } = this.props
     const currentArt = _.find(articles, {id: artId})
@@ -33,7 +30,8 @@ export class App extends React.Component {
     const path = this.props.pathname.replace(/^\//, '');
     const key = path.split('/')[0]
     return (
-      <div className={classes} onKeyDown={(e) => this.handleKey(e)}>
+      <div className={classes} >
+        <CanvasBack { ...this.props } />
         <ReactTransitionGroup>
           {React.cloneElement(this.props.children, {
             key: key

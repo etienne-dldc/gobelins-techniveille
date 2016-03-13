@@ -1,3 +1,6 @@
+import TweenMax from 'gsap'
+import $ from 'jquery'
+import ReactTransitionGroup from 'react-addons-transition-group'
 import React, { PropTypes } from 'react'
 import { connect } from 'react-redux'
 import { push } from 'react-router-redux'
@@ -5,8 +8,6 @@ import _ from 'lodash'
 import { actions as artActions } from '../state/articlesReducer'
 import ToolBar from './ToolBar'
 import Article from './Article'
-import TweenMax from 'gsap'
-import ReactTransitionGroup from 'react-addons-transition-group'
 
 const mapStateToProps = (state, ownProps) => {
   return {
@@ -51,6 +52,43 @@ export class Articles extends React.Component {
     this.init(this.props)
   }
 
+  componentDidMount () {
+    this.handleKey = this.handleKey.bind(this)
+    $(window).on('keyup', this.handleKey)
+  }
+
+  componentWillUnmount () {
+    $(window).off('keyup', this.handleKey)
+  }
+
+  handleKey (e) {
+    const { articles, categories, selectedCat, artId, push, navigate } = this.props
+    const currentArt = _.find(articles, {id: artId})
+
+    var catColor = '#0f878b'
+    if (artId !== undefined && artId !== null) {
+      const currentArt = _.find(articles, {id: artId})
+      if (currentArt) {
+        const currentCat = _.find(categories, {slug: currentArt.category})
+        if (currentCat) {
+          catColor = currentCat.color
+        }
+      }
+    }
+
+    if (e.keyCode === 38) { // UP
+      if (this.prevArtId !== false) {
+        navigate(this.prevArtId, currentArt.id)
+      }
+    } else
+    if (e.keyCode === 40) { // DOWN
+      if (this.nextArtId !== false) {
+        navigate(this.nextArtId, currentArt.id)
+      }
+    }
+
+  }
+
   render () {
     const { articles, categories, selectedCat, artId, push, navigate } = this.props
     const currentArt = _.find(articles, {id: artId})
@@ -70,7 +108,7 @@ export class Articles extends React.Component {
       <div>
         <ToolBar artId={artId} />
         <ReactTransitionGroup component="div">
-          <Article art={currentArt} key={currentArt.id} />
+          <Article art={currentArt} color={catColor} key={currentArt.id} />
         </ReactTransitionGroup>
       	<aside className="pagination">
           { this.prevArtId !== false ? (

@@ -10,6 +10,7 @@ const articles = [
     resume: "Un plâtre qui respire s'adaptant à la forme du bras, léger, aéré, résistant à l'eau et très design. C’est l’invention de Jake Evill, un étudiant de l’Université Victoria de Wellington. L’imprimante 3D Cortex permet de créer un plâtre en Nylon sur mesure en fonction des différentes blessures.",
     category: 'medecine',
     button: read,
+    type: 'article',
     link: 'http://jakevilldesign.dunked.com/cortex',
     date: '2016-12-31'
   },
@@ -19,6 +20,7 @@ const articles = [
     resume: "Un plâtre qui respire s'adaptant à la forme du bras, léger, aéré, résistant à l'eau et très design. C’est l’invention de Jake Evill, un étudiant de l’Université Victoria de Wellington. L’imprimante 3D Cortex permet de créer un plâtre en Nylon sur mesure en fonction des différentes blessures.",
     category: 'medecine',
     button: read,
+    type: 'article',
     link: 'http://www.industrie-techno.com/une-collaboration-globale-pour-offrir-des-mains-imprimees-en-3d-a-des-enfants.29578',
     date: '2014-04-25'
   },
@@ -28,6 +30,7 @@ const articles = [
     resume: 'La start-up BioBots a créé une imprimante capable de créer des tissus humains vivants.<br />Cette technique permettrait de tester des médicaments en laboratoire, sans utiliser de cobayes animaliers ainsi que de créer des médicaments adaptés à chaque individu grâce à la reproduction des tissus cellulaires des patients, pouvant ainsi être utilisé pour tester différents traitements.',
     category: 'medecine',
     button: read,
+    type: 'article',
     link: 'http://www.industrie-techno.com/une-collaboration-globale-pour-offrir-des-mains-imprimees-en-3d-a-des-enfants.29578',
     date: '2015-09-20'
   },
@@ -37,6 +40,7 @@ const articles = [
     resume: 'Eric Moger a perdu le côté gauche de son visage suite aune chirurgie pour enlever une tumeur. Après la chirurgie, il était incapable de manger et boire correctement en raison du trou dans son visage. Après qu’un médecin est utilisé la technique de l’impression 3D pour créer une prothèse et de reconstruire le côté gauche de son visage, l’homme a finalement été en mesure de reprendre sa vie comme une personne normale.',
     category: 'medecine',
     button: watch,
+    type: 'video',
     link: 'https://www.youtube.com/watch?v=5SWw_qM6_8I',
     date: '2013-04-02'
   },
@@ -46,6 +50,7 @@ const articles = [
     resume: "L'arthrose, est la forme la plus fréquente d'arthrite. Il s'agit d'une maladie dégénérative causée par une désintégration du cartilage autour des articulations. Sera-t-il bientôt possible d’aller chez son médecin pour remplacer son cartilage endommagé par du cartilage imprimé en 3D ? C’est sur ce sujet que travaille Rocky Tuan, chercheur de l'école de médecine de Pittsburgh.",
     category: 'medecine',
     button: read,
+    type: 'article',
     link: 'http://www.huffingtonpost.fr/2014/05/02/traitement-arthrose-cartilage-developpe-methode-impression-3d_n_5251890.html',
     date: '2014-05-02'
   },
@@ -54,6 +59,7 @@ const articles = [
     resume: "Opération cardiaque réussie pour un bébé de 14 mois grâce à l'impression en trois dimensions de son coeur. Son coeur a été reproduit en trois dimensions, permettant au chirurgien de repérer à l’avance les malformations et de réparer avec succès le jeune organe défaillant.",
     category: 'medecine',
     button: read,
+    type: 'article',
     link: 'http://www.lepoint.fr/sante/etats-unis-un-bebe-sauve-par-une-imprimante-3d-26-02-2014-1795915_40.php',
     cover: require('./images/heart.jpg'),
     date: '2014-02-26'
@@ -64,6 +70,7 @@ const articles = [
     title: "FutureCraft, la chaussure imprimée en 3D d’adidas",
     resume: "La marque Adidas a développé un prototype de basket dont la semelle est imprimée en 3D dans le cadre de sa série “Futurecraft” destinée à explorer de nouveaux horizons en terme de manufacture de chaussure. L’idée est de créer des paires de chaussures sur mesures et adaptées aux besoins de  chaque consommateurs en imprimant la semelle directement en 3D ",
     button: read,
+    type: 'article',
     link: 'http://www.3dnatives.com/basket-imprimee-3d-adidas-08102015/',
     category: 'art',
     date: '2015-10-08',
@@ -73,6 +80,7 @@ const articles = [
     title: "Le premier court-métrage en impression 3D",
     resume: "« Chase Me » est le dernier projet très ambitieux de l’artiste français Gilles-Alexandre Deschaud, tout juste sorti du four, ou plutôt de l’imprimante.  Après le stop motion en pâte à modeler, voici donc celui usant de la technologie 3D. Un croisement des techniques qui offre un mode d’animation inédit et des images aussi soignées que délicates. ",
     button: read,
+    type: 'article',
     link: 'http://nebuleuz.com/2015/04/22/un-artiste-francais-realise-le-premier-court-metrage-en-impression-3d/',
     category: 'art',
     date: '2015-04-22',
@@ -82,6 +90,7 @@ const articles = [
     title: "L'impression 3D s'invite à la cérémonie des oscars",
     resume: "L’academy of motion picture Art and science a eu recours à l’impression 3D pour fabriquer les statuettes de la dernière édition des oscars. En effet l’impression 3D s’est révélé être le meilleur moyen de répliquer la statuette originale créée en 1929. Une utilisation surprenante de l’impression 3D qui comme à son habitude est toujours là où on ne l’attend pas ",
     button: read,
+    type: 'article',
     link: 'http://www.3dnatives.com/impression-3d-oscars23022016/',
     category: 'art',
     date: '2016-02-23',
@@ -91,6 +100,7 @@ const articles = [
     title: "Une façade imprimée en 3D pour le Conseil de l’Union Européenne",
     resume: "Depuis le début du mois de janvier, les politiques et officiels européens ont le privilège de découvrir la magnifique façade imprimée en 3D du Conseil de l’Union Européenne. Réalisée à partir d’une imprimante 3D XXL, les panneaux sont entièrement amovibles. Curieuse et innovante, cette oeuvre architecturale présage peut-être de ce à quoi pourrait ressembler les bâtiments de demain, qui eux seront peut-être entièrement fabriqué en 3D... ",
     button: read,
+    type: 'article',
     link: 'http://www.3dnatives.com/facade-imprimee-3d-union-europeenne-12012016/',
     category: 'art',
     date: '2016-12-01',
@@ -102,6 +112,7 @@ const articles = [
     date: '2014-05-28',
     category: 'art',
     button: read,
+    type: 'article',
     link: 'http://peiqi.su/peniswall.html',
     cover: require('./images/penis.jpg')
   },
@@ -113,6 +124,7 @@ const articles = [
     date: '2015-11-13',
     category: 'industrie',
     button: read,
+    type: 'article',
     link: 'http://www.paruvendu.fr/auto-moto/I/la-lm3d-de-local-motors-premiere-voiture-en-3d-produite-en-serie-i37865',
     // cover: require('./images/LM3D-Swim.jpg')
   },
@@ -122,6 +134,7 @@ const articles = [
     date: '2014-10-14',
     category: 'industrie',
     button: read,
+    type: 'article',
     link: 'http://lixpen.com/',
     // cover: require('./images/lixpen-3d-printing-pen-kickstarter-2.jpg')
   },
@@ -131,6 +144,7 @@ const articles = [
     date: '2014-04-16',
     category: 'industrie',
     button: watch,
+    type: 'video',
     link: 'https://www.youtube.com/watch?v=SObzNdyRTBs',
     // cover: require('./images/chine_2_0.jpg')
   },
@@ -140,6 +154,7 @@ const articles = [
     date: '2014-11-12',
     category: 'industrie',
     button: read,
+    type: 'article',
     link: 'https://www.apollon.uio.no/english/articles/2014/4_robots.html',
     // cover: require('./images/4_roboter_forskere.jpg')
   },
@@ -149,6 +164,7 @@ const articles = [
     date: '2015-11-25',
     category: 'industrie',
     button: read,
+    type: 'article',
     link: 'http://3dprint.com/116658/wilson-3d-files-machine-gun/',
     // cover: require('./images/gun.jpg')
   },
@@ -158,6 +174,7 @@ const articles = [
     date: '2015-11-23',
     category: 'industrie',
     button: read,
+    type: 'article',
     link: "http://3dprint.com/107062/worlds-1st-3d-printed-revolver/",
     // cover: require('./images/gun.jpg')
   },
@@ -170,6 +187,7 @@ const articles = [
     date: '2015-10-19',
     category: 'espace',
     button: read,
+    type: 'article',
     link: 'http://3dprintingindustry.com/2015/10/19/metal-3d-printing-is-helping-nasa-blast-off-into-space/',
     cover: require('./images/3d-rocket-injector.jpg')
   },
@@ -179,6 +197,7 @@ const articles = [
     date: '2015-10-19',
     category: 'espace',
     button: read,
+    type: 'article',
     link: 'http://www.space.com/30854-nasa-3d-printed-mars-habitat-contest-winners.html',
     cover: require('./images/3d-printed-home.jpg')
   },
@@ -188,6 +207,7 @@ const articles = [
     date: '2015-10-29',
     category: 'espace',
     button: read,
+    type: 'article',
     link: 'http://www.space.com/30965-made-in-space-3d-printer-lowes.html',
     cover: require('./images/ISS.jpg')
   },
@@ -197,6 +217,7 @@ const articles = [
     date: '2016-01-08',
     category: 'espace',
     button: read,
+    type: 'article',
     link: 'http://www.space.com/31553-asteroid-metal-3d-printing-test-planetary-resources.html',
     cover: require('./images/space-object.jpg')
   },
@@ -206,6 +227,7 @@ const articles = [
     date: '2016-01-11',
     category: 'espace',
     button: read,
+    type: 'article',
     link: 'http://3dprintingindustry.com/2016/01/11/64645/',
     cover: require('./images/goole-lunar-x-prize.jpg')
   },
@@ -220,6 +242,7 @@ const articles = [
     link: 'http://www.3dprinter.net/did-you-know-you-can-turn-a-2d-photo-into-a-printable-3d-model',
     date: '2016-02-01',
     button: read,
+    type: 'article',
     cover: require('./images/2d-to-3d.png')
   },
   {
@@ -229,6 +252,7 @@ const articles = [
     link: 'http://www.3dnatives.com/boeing-3d-metallique-ultra-legere-19102015/',
     date: '2015-10-19',
     button: read,
+    type: 'article',
     cover: require('./images/structure.jpg')
   },
   {
@@ -237,6 +261,7 @@ const articles = [
     date: '2015-04-17',
     category: 'science',
     button: read,
+    type: 'article',
     link: 'http://www.3ders.org/articles/20150417-father-uses-3d-printing-to-help-teach-his-blind-daughter-math.html',
     cover: require('./images/father-math.png')
   },
@@ -246,6 +271,7 @@ const articles = [
     date: '2014-10-22',
     category: 'science',
     button: read,
+    type: 'article',
     link: 'http://www.3dnatives.com/impression-3d-non-voyants/',
     cover: require('./images/print-memory.jpg')
   },
@@ -256,6 +282,7 @@ const articles = [
     link: 'http://www.journaldelascience.fr/technologie/articles/une-batterie-taille-dun-grain-sable-creee-par-impression-3d-3153',
     date: '2013-06-20',
     button: read,
+    type: 'article',
     cover: require('./images/mocro-batterie.jpg')
   },
   {
@@ -265,6 +292,7 @@ const articles = [
     link: 'http://www.nasa.gov/directorates/spacetech/home/feature_3d_food.html#.VqZi5lPhAvr',
     date: '2013-05-23',
     button: read,
+    type: 'article',
     cover: require('./images/printed-food.jpg')
   }
 ];

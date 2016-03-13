@@ -9,9 +9,10 @@
 	&__icon {
 		height: 4rem;
 		width: 4rem;
-		margin-left: 8.5rem;
-		background: $green;
-		transform: translate(-50%,50%);
+		margin-left: 6.5rem;
+		margin-bottom: -2.5rem;
+		position: relative;
+		z-index: 200;
 	}
 
 	&__img {
@@ -27,14 +28,16 @@
 		font-family: $typo-heading;
 		text-transform: uppercase;
 		letter-spacing: 1px;
-		transform: translateY(-50%);
+		margin-top: -1.5rem;
+		box-shadow: 0 0 80px 80px hsla(0, 100%, 100%, 0.15);
+    background: hsla(0,0%,100%,.15);
 	}
 
 	&__content {
 		margin: 0 0 4rem 4.5rem;
 		font-family: $typo-content;
 		font-size: 1.5rem;
-		line-height: 1.5em;	
+		line-height: 1.5em;
 	}
 
 	&__btn {

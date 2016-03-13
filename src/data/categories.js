@@ -32,7 +32,7 @@ const categories = [
   {
     name: 'Science',
     slug: 'science',
-    color: '#4b4b4b',
+    color: '#0f878b',
     class: 'tpl-brown'
   },
 ]
