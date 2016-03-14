@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react'
+  import React, { PropTypes } from 'react'
 import { connect } from 'react-redux'
 import MenuItem from './MenuItem'
 import CategorySelector from './CategorySelector'
@@ -86,11 +86,13 @@ export default class MenuAnim extends React.Component {
     if (this.anim) {
       this.anim.kill()
     }
-    // $(this.refs.main).css('overflow', 'hidden')
+    $(this.refs.container).css('overflow-y', 'hidden')
     const delay = fromHome ? 0.7 : 0.1
     this.anim = TweenMax.fromTo(this.refs.main , 0.4,
       {scale: 2, opacity: 0},
-      {scale: 1, opacity: 1, delay: delay}
+      {scale: 1, opacity: 1, delay: delay, onComplete: () => {
+        $(this.refs.container).css('overflow-y', 'auto')
+      }}
     )
   }
 
@@ -98,11 +100,11 @@ export default class MenuAnim extends React.Component {
     if (this.anim) {
       this.anim.kill()
     }
-    $(this.refs.main).css('overflowY', 'hidden')
+    $(this.refs.container).css('overflow-y', 'hidden')
     this.anim = TweenMax.to(this.refs.main , 0.4,
       {scale: 2, opacity: 0, onComplete: () => {
         cb()
-        $(this.refs.main).css('overflowY', 'auto')
+        $(this.refs.container).css('overflow-y', 'auto')
       }}
     )
   }

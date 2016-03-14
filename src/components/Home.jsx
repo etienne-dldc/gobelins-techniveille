@@ -19,9 +19,23 @@ export class Home extends React.Component {
     var cube = new Vivus('logosvg', {
       type: 'delayed',
       start: 'autostart',
-      duration: 400//,
+      duration: 500//,
       //animTimingFunction: Vivus.EASE_IN
     });
+
+    const tl = new TimelineMax();
+
+    tl
+      .set(this.refs.logo, {autoAlpha: 0})
+      .set(document.body, {overflow: 'hidden'})
+      .to(this.refs.logo,0.5, {
+        autoAlpha: 1,
+        ease: Expo.easeOut
+      }, 1)
+      .set(document.body, {overflow: 'auto'}, 1.5)
+    
+
+
 
     setTimeout(function(){
        document.getElementsByClassName('logo-container')[0].classList.add('finished');
@@ -46,7 +60,7 @@ export class Home extends React.Component {
         { /* <canvas ref='back'></canvas> */ }
         <div className='home-container'>
           <div className='logo-container'>
-            <svg id='logosvg' x='0px' y='0px' viewBox='-269 509.5 538 565' enable-background='new -269 509.5 538 565'>
+            <svg ref="logo" id='logosvg' x='0px' y='0px' viewBox='-269 509.5 538 565' enable-background='new -269 509.5 538 565'>
               <g transform='translate(-664.5,-949.25)'>
                 <path fill='none' stroke='#FFFFFF' strokeWidth='10' d='M410.9,2007h358l147.5-176.9v-356.8H562.1l-151.8,181.8V2007H410.9z&#xD;&#xA;&#x9;&#x9; M880.3,1819.1H767.1 M729.8,1819.1H593.3l-123.6,147.5 M879.7,1539.4l-112.6,137.7V1947l112.6-128.5v-30.6 M598.2,1682h131.6&#xD;&#xA;&#x9;&#x9;v285.2H448.3V1682h113.8 M562.1,1472.7v330.5l-113.8,136.5 M856.5,1506.4l-118.7,140.8H598.2 M562.1,1647.1h-99.8l99.8-122.4&#xD;&#xA;&#x9;&#x9; M729.8,1788.5H598.2v-282.1h281.5v282.1H767.1'/>
               </g>
