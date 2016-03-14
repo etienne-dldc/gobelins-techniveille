@@ -49,10 +49,10 @@
 	&--dropdown {
 		position: relative;
 		height: auto;
-		width: 15rem;
+		width: 16rem;
 
 		.tags__btn-dropdown {
-			width: 15rem;
+			width: 16rem;
 			font-family: $typo-heading;
 			font-size: 1.4rem;
 			text-transform: uppercase;
@@ -64,7 +64,7 @@
 			z-index: 3;
 			flex-direction: column;
 			height: auto;
-			width: 15rem;
+			width: 16rem;
 			padding : 0 2rem;
 			background: #fff;
 			visibility: hidden;
@@ -92,7 +92,7 @@
 			text-align: center;
 			font-size: 1.4rem;
 			border-width: 0px;
-			transition-property: all;
+			transition-property: boder;
     	transition-duration: .3s;
 
 			&.isSelected {}

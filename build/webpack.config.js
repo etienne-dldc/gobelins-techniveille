@@ -3,7 +3,7 @@ var webpack = require('webpack');
 var cssnano = require('cssnano');
 var HtmlWebpackPlugin = require('html-webpack-plugin')
 var CopyWebpackPlugin = require('copy-webpack-plugin')
-var debug = require('debug')('app:webapck')
+var debug = require('debug')('app:webpack')
 
 var dir_base = path.resolve(__dirname, '..');
 var dir_src = path.resolve(dir_base, 'src');
@@ -95,7 +95,10 @@ if (__DEV__) {
         warnings: false
       }
     })
-  )
+  ),
+  new webpack.optimize.CommonsChunkPlugin({
+    name: 'vendor'
+  })
 }
 
 webpackConfig.plugins.push(new HtmlWebpackPlugin({

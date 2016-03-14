@@ -8,6 +8,7 @@ import _ from 'lodash'
 import { actions as artActions } from '../state/articlesReducer'
 import ToolBar from './ToolBar'
 import Article from './Article'
+import { Lethargy } from 'lethargy'
 
 const mapStateToProps = (state, ownProps) => {
   return {
@@ -54,11 +55,31 @@ export class Articles extends React.Component {
 
   componentDidMount () {
     this.handleKey = this.handleKey.bind(this)
+    this.handleScroll = _.throttle(this.handleScroll.bind(this), 700)
+    this.lethargy = new Lethargy(30, 100, 0.3)
     $(window).on('keyup', this.handleKey)
+    $(window).bind('mousewheel DOMMouseScroll wheel MozMousePixelScroll', this.handleScroll);
   }
 
   componentWillUnmount () {
     $(window).off('keyup', this.handleKey)
+    $(window).unbind('mousewheel DOMMouseScroll wheel MozMousePixelScroll', this.handleScroll);
+  }
+
+  handleScroll (e) {
+    console.log('handleScroll')
+    e.preventDefault()
+    e.stopPropagation();
+    const result = this.lethargy.check(e)
+    if(result !== false) {
+      if (result == 1) {
+        console.log('next')
+      } else
+      if (result == -1) {
+        console.log('prev')
+      }
+      // Do something with the scroll event
+    }
   }
 
   handleKey (e) {

@@ -82,7 +82,7 @@ export default class Article extends React.Component {
 					<div ref='img'>
 						<img className="article__img" src={art.cover} alt="" />
 					</div>
-					<h1 className="article__title" ref='title' >{art.title}</h1>
+					<h1 className="article__title" ref='title'>{art.title}</h1>
 					<div ref='resume' className="article__content">
 						<p>{art.resume}</p>
 					</div>
