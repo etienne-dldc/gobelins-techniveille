@@ -19,7 +19,7 @@ export class Home extends React.Component {
     var cube = new Vivus('logosvg', {
       type: 'delayed',
       start: 'autostart',
-      duration: 400//,
+      duration: 500//,
       //animTimingFunction: Vivus.EASE_IN
     });
 
