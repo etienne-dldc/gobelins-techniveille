@@ -175,9 +175,9 @@ export default class ArticlesAnim extends React.Component {
   }
 
   render () {
-
+    const isMobile = $(window).width() < 480
     return (
-      <div ref='main' style={{ height: '100%', width: '100%', position: 'absolute', zIndex: '100', overflow:'hidden' }}>
+      <div ref='main' style={{ height: '100%', width: '100%', position: 'absolute', zIndex: '100', overflow: isMobile ? 'auto' : 'hidden' }}>
         <ArticlesConnected {...this.props} />
       </div>
     )

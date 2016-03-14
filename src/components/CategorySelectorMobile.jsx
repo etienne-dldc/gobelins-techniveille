@@ -48,7 +48,8 @@ export class CategorySelectorMobile extends React.Component {
           <ul className="tags__list">
             { categories.map((cat) => {
               return (<CategorySelectorItem
-                selected={true}
+                selected={ true }
+                underline={ cat.slug === selected }
                 name={cat.name}
                 color={cat.color}
                 key={cat.slug}

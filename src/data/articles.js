@@ -3,6 +3,7 @@ const watch = "Voir la vidéo";
 
 const articles = [
 
+
     // MÉDECINE
     {
       title: "Des plâtres design grâce à l’impression 3D",
@@ -31,7 +32,7 @@ const articles = [
       category: 'medecine',
       button: read,
       type: 'article',
-      link: 'http://www.industrie-techno.com/une-collaboration-globale-pour-offrir-des-mains-imprimees-en-3d-a-des-enfants.29578',
+      link: 'http://www.atelier.net/trends/articles/impression-3d-desormais-creer-vie_438092',
       date: '2015-09-20'
     },
     {
@@ -97,7 +98,7 @@ const articles = [
       cover: require('./images/oscar.jpg')
     },
     {
-      title: "Une façade imprimée en 3D pour le Conseil de l’Union Européenne",
+      title: "Une façade imprimée en 3D pour le Conseil de l’UE",
       resume: "Depuis le début du mois de janvier, les politiques et officiels européens ont le privilège de découvrir la magnifique façade imprimée en 3D du Conseil de l’Union Européenne. Réalisée à partir d’une imprimante 3D XXL, les panneaux sont entièrement amovibles. Curieuse et innovante, cette oeuvre architecturale présage peut-être de ce à quoi pourrait ressembler les bâtiments de demain, qui eux seront peut-être entièrement fabriqué en 3D... ",
       button: read,
       type: 'article',
@@ -119,7 +120,7 @@ const articles = [
 
     // INDUSTRIE
     {
-      title: "Local Motors veut commercialiser ses voitures imprimées en 3D à 75% en 2017",
+      title: " Des voitures imprimées en 3D par Local Motors",
       resume: "Les voitures imprimées partiellement 3D existent déjà, mais aucune n’a encore été commercialisée au public. Local Motors veut révolutionner le secteur automobile ; savez-vous comment ? En commercialisant la première voiture imprimée en 3D, en série. La LM3D devrait débarquer en 2017, le temps pour le constructeur de finaliser les certifications et autres détails.",
       date: '2015-11-13',
       category: 'industrie',
@@ -287,7 +288,7 @@ const articles = [
     },
     {
       title: 'NASA : De la nouriture imprimée en 3D',
-      category: 'science',
+      category: 'espace',
       resume: "La NASA envisage d'imprimer de la nouriture pour les missions de longue durée dans l'espace. L'avantage d'une nouriture imprimée est qu'avec quelques éléments de base il est possible de créer un multitude de \"plats\".",
       link: 'http://www.nasa.gov/directorates/spacetech/home/feature_3d_food.html#.VqZi5lPhAvr',
       date: '2013-05-23',
@@ -295,6 +296,7 @@ const articles = [
       type: 'article',
       cover: require('./images/printed-food.jpg')
     }
+
 ];
 
 articles.sort((left, right) => {
