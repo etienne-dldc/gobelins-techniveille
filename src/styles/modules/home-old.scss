@@ -5,33 +5,17 @@ canvas {
   height: 100%;
 }
 
-.home-container {
-  display: flex;
-  flex-direction : column;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-}
-
 .logo-container {
   display: block;
-  //position: absolute;
-  width:100px;
-  /*top:50%;
+  position: absolute;
+  width:300px;
+  top:50%;
   left:50%;
   margin-left:-150px;
-  margin-top: -150px;*/
-  //opacity: 0;
-  transform: scale(2.2) translate3d(0,50%,0);
-  transition : 0.45s all ease-out;
+  margin-top: -150px;
 }
 
 .logo-container.finished {
-  opacity: 1;
-  transform: scale(1) translateY(0);
-}
-
-/*.logo-container.finished {
   width:80px;
   height:11%;
   top:20%;
@@ -41,29 +25,24 @@ canvas {
 
   transition-property: top, width, height, margin-left, margin-top;
   transition-duration: 0.7s;
-}*/
+}
 
 #logosvg {
   width: 100%;
 }
 
 #logosvg.done {
-  /*width:70%;
+  width:70%;
   transition-property: width;
-  transition-duration: 0.7s;*/
+  transition-duration: 0.7s;
 }
 
 .text-container {
-  width: 720px;
-  max-width: 100%;
   color: white;
   font-family: 'Lato', sans-serif;
   text-align: center;
   display: block;
-  opacity: 0;
-  transform: translate3d(0,100%,0);
-  transition : 0.5s all ease-out;
-  /*position: absolute;
+  position: absolute;
   left: 20%;
   right: 20%;
 
@@ -72,23 +51,17 @@ canvas {
     right: 10%;
 	}
 
-  top: 40%;*/
-  //opacity: 0;
+  top: 40%;
+  opacity: 0;
 }
 
 .text-container.enabled {
-  opacity: 1;
-  transform: scale(1) translateY(0);
-  filter: blur(0);
-}
-
-/*.text-container.enabled {
   top: 30%;
   opacity: 1;
   transition-property: top, opacity;
   transition-duration: 1s;
-  /*transition-timing-function: ease-in;
-}*/
+  /*transition-timing-function: ease-in;*/
+}
 
 .text-container h1 {
   display: block;
@@ -153,12 +126,36 @@ canvas {
 }
 
 @media screen and (max-width: 640px) {
-  .text-container h1 {
-    font-size: 1.5em;
-    letter-spacing: 3px;
+
+  .logo-container.finished {
+    width:80px;
+    top:40px;
+    left:50%;
+    margin-left:-40px;
+    margin-top: 0px;
+
+    transition-property: top, width, height, margin-left, margin-top;
+    transition-duration: 0.7s;
   }
 
-  .text-container h2 {
-    font-size: 0.9em;
+  .text-container {
+    color: white;
+    font-family: 'Lato', sans-serif;
+    text-align: center;
+    display: block;
+    position: absolute;
+    left: 10px;
+    right: 10px;
+
+    top: 130px;
+    opacity: 0;
+  }
+
+  .text-container.enabled {
+    top: 100px;
+    opacity: 1;
+    transition-property: top, opacity;
+    transition-duration: 1s;
+    /*transition-timing-function: ease-in;*/
   }
 }
