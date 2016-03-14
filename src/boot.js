@@ -16,12 +16,6 @@ const store = configureStore(hashHistory)
 // Create History
 const history = syncHistoryWithStore(hashHistory, store)
 
-// Remove splashscreen
-const splashscreen = document.getElementById('splashscreen')
-if (splashscreen) {
-  splashscreen.parentNode.removeChild(splashscreen)
-}
-
 // Render the React application to the DOM
 ReactDOM.render(
   <Root history={history} store={store} routes={routes} />,

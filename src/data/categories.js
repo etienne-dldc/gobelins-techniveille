@@ -24,7 +24,7 @@ const categories = [
     class: 'tpl-blue'
   },
   {
-    name: 'Art',
+    name: 'Art/Mode',
     slug: 'art',
     color: '#772a5c',
     class: 'tpl-purple'

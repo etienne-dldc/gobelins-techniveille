@@ -85,6 +85,7 @@
     "history": "^2.0.0",
     "is_js": "^0.8.0",
     "jquery": "^2.2.1",
+    "lethargy": "^1.0.2",
     "lodash": "^4.6.1",
     "react": "^0.14.7",
     "react-addons-css-transition-group": "^0.14.7",
