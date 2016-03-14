@@ -26,6 +26,7 @@ export class CategorySelector extends React.Component {
             { categories.map((cat) => {
               return (<CategorySelectorItem
                 selected={cat.slug === selected || selected === 'all'}
+                underline={ cat.slug === selected }
                 name={cat.name}
                 color={cat.color}
                 key={cat.slug}
