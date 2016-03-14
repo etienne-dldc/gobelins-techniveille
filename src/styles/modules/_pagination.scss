@@ -15,14 +15,29 @@
 		width: 3.5rem;
 		border: 1px solid #000;
 
+		svg {
+			transition-property: margin-top;
+			transition-duration: .3s;
+		}
+
 		&--top {
 			margin-top: 3rem;
+			&:hover{
+				svg {
+					margin-top: -2rem;
+				}
+			}
 		}
 
 		&--bottom {
 			position: relative;
 			z-index: 2;
 			margin-bottom: 3rem;
+			&:hover{
+				svg {
+					margin-top: 2rem;
+				}
+			}
 		}
 	}
 
