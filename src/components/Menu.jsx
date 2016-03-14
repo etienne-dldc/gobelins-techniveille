@@ -86,6 +86,7 @@ export default class MenuAnim extends React.Component {
     if (this.anim) {
       this.anim.kill()
     }
+    // $(this.refs.main).css('overflow', 'hidden')
     const delay = fromHome ? 0.7 : 0.1
     this.anim = TweenMax.fromTo(this.refs.main , 0.4,
       {scale: 2, opacity: 0},
@@ -97,8 +98,12 @@ export default class MenuAnim extends React.Component {
     if (this.anim) {
       this.anim.kill()
     }
+    $(this.refs.main).css('overflowY', 'hidden')
     this.anim = TweenMax.to(this.refs.main , 0.4,
-      {scale: 2, opacity: 0, onComplete: cb}
+      {scale: 2, opacity: 0, onComplete: () => {
+        cb()
+        $(this.refs.main).css('overflowY', 'auto')
+      }}
     )
   }
 
@@ -115,9 +120,19 @@ export default class MenuAnim extends React.Component {
   }
 
   render () {
+    const divStyle = {
+      height: '100%',
+      position: 'absolute',
+      zIndex: '1000',
+      width: '100%',
+      overflowX: 'hidden',
+      overflowY: 'auto'
+    }
     return (
-      <div ref='main' style={{ height: '100%', position: 'absolute', zIndex: '1000', width: '100%', background: 'white', overflow: 'hidden' }}>
-        <MenuConnected { ...this.props } />
+      <div ref='container' style={divStyle}>
+        <div ref='main'>
+          <MenuConnected { ...this.props } />
+        </div>
       </div>
     )
   }

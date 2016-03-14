@@ -55,11 +55,14 @@ export class CanvasBack extends React.Component {
     const area = this.dimentions.width * this.dimentions.height
 
     // Article
-    const elemPerPixel = 0.0002
+    const elemPerPixel = 0.0005
     const nbrElems = Math.floor(elemPerPixel * area)
     this.elements = []
     for (var i = 0; i < nbrElems; i++) {
-      this.elements.push(this.getNewElement())
+      let newElem = this.getNewElement()
+      if (newElem) {
+        this.elements.push(newElem)
+      }
     }
 
     // Home
@@ -67,7 +70,10 @@ export class CanvasBack extends React.Component {
     const nbrElemsHome = Math.floor(elemPerPixel * area)
     this.homeElements = []
     for (var i = 0; i < nbrElemsHome; i++) {
-      this.homeElements.push(this.getNewHomeElement())
+      let newElem = this.getNewHomeElement()
+      if (newElem) {
+        this.homeElements.push(newElem)
+      }
     }
 
     this.mousePos = {
@@ -98,7 +104,7 @@ export class CanvasBack extends React.Component {
       ctx.globalAlpha = 1
       ctx.fillStyle = 'rgb(255, 255, 255)'
       ctx.fillRect(0, 0, width, height)
-      ctx.globalAlpha = 1
+      ctx.globalAlpha = 0.3
       for (var i = 0; i < this.elements.length; i++) {
         this.displayElem(this.elements[i])
       }
@@ -176,6 +182,29 @@ export class CanvasBack extends React.Component {
     })
   }
 
+  distBetweenElems (left, right) {
+    let xLeft = left.x
+    let xRight = right.x
+    if (left.height) {
+      xLeft  = left.x / left.height
+      xRight  = right.x / right.height
+    }
+    const xDiff = xLeft - xRight
+    const yDiff = left.y - right.y
+    return Math.sqrt(Math.pow(xDiff, 2) + Math.pow(yDiff, 2))
+  }
+
+  isNearElem (elem, list) {
+    for (var i = 0; i < list.length; i++) {
+      let right = list[i]
+      const dist = this.distBetweenElems(elem, right)
+      if (dist < 150) {
+        return true
+      }
+    }
+    return false
+  }
+
   getNewElement () {
     const types = ['circle', 'full-circle', 'full-square', 'line', 'square']
     const colors = [ '#0f878b', '#84b9cd', '#772a5c', '#f8c986', '#d35966', '#4b4b4b']
@@ -185,13 +214,21 @@ export class CanvasBack extends React.Component {
 
     result.type = types[typeIndex]
     result.color = colors[colorIndex]
-    result.size = Math.random()
-    result.rotation = Math.random() * Math.PI
-    result.mouseVariation = result.size * 200
+    result.size = 0.3 // Math.random()
+    // result.rotation = Math.random() * Math.PI
+    result.mouseVariation = Math.random() * 200
     result.height = 10000 + Math.floor(Math.random() * 50000)
-    result.x = Math.floor(Math.random() * this.dimentions.width)
-    result.y = Math.floor(Math.random() * (this.dimentions.height + result.height))
-    return result
+    // let maxLoop = 50
+    // do {
+      // maxLoop = maxLoop - 1
+      result.x = Math.floor(Math.random() * this.dimentions.width)
+      result.y = Math.floor(Math.random() * (this.dimentions.height + result.height))
+    // } while (maxLoop > 0 && this.isNearElem(result, this.elements))
+    // if (maxLoop > 0) {
+      return result
+    // } else {
+    //   return false
+    // }
   }
 
   getNewHomeElement () {
@@ -204,12 +241,20 @@ export class CanvasBack extends React.Component {
 
     result.type = types[typeIndex]
     result.color = colors[colorIndex]
-    result.size = Math.random()
-    result.rotation = Math.random() * Math.PI
-    result.mouseVariation = result.size * mouseRange
-    result.x = Math.floor(Math.random() * (this.dimentions.width + (mouseRange*2))) - mouseRange
-    result.y = Math.floor(Math.random() * (this.dimentions.height + (mouseRange*2))) - mouseRange
-    return result
+    result.size = 0.4 // Math.random()
+    // result.rotation = Math.random() * Math.PI
+    result.mouseVariation = Math.random() * mouseRange
+    let maxLoop = 50
+    do {
+      maxLoop = maxLoop - 1
+      result.x = Math.floor(Math.random() * (this.dimentions.width + (mouseRange*2))) - mouseRange
+      result.y = Math.floor(Math.random() * (this.dimentions.height + (mouseRange*2))) - mouseRange
+    } while (maxLoop >= 0 && this.isNearElem(result, this.homeElements))
+    if (maxLoop > 0) {
+      return result
+    } else {
+      return false
+    }
   }
 
   updateMousePos (e) {
@@ -238,12 +283,12 @@ export class CanvasBack extends React.Component {
       ctx.rotate(elem.rotation)
         if (elem.type === 'circle') {
           ctx.beginPath()
-          ctx.arc(0, 0, size, 0, 2 * Math.PI)
+          ctx.arc(0, 0, size/2, 0, 2 * Math.PI)
           ctx.stroke()
         } else
         if (elem.type === 'full-circle') {
           ctx.beginPath()
-          ctx.arc(0, 0, size, 0, 2 * Math.PI)
+          ctx.arc(0, 0, size/2, 0, 2 * Math.PI)
           ctx.fill()
         } else
         if (elem.type === 'full-square') {

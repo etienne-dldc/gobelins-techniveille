@@ -1,5 +1,6 @@
 // Font
 @import url(https://fonts.googleapis.com/css?family=Lato:400,100,300,700,900);
+@import './font/stylesheet.css';
 
 //Base
 @import 'base/reset';
@@ -15,4 +16,4 @@
 @import 'modules/pagination';
 @import 'modules/toolbar';
 
-@import 'home.css'
+@import 'home.scss'

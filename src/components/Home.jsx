@@ -53,8 +53,7 @@ export class Home extends React.Component {
         <div className='text-container'>
           <h1 className='title'>L'IMPRIMANTE 3D</h1>
           <h2 className='subtitle'>POURQUOI EST-ELLE SI RÉVOLUTIONNAIRE ?</h2>
-          <p className='desc'>Avec l’impression 3D, il est devenu possible de réaliser des pièces en volume à partir d’un fichier numérique au moyen d’une imprimante. Ces pièces sont le plus souvent utilisées comme prototypes pour des usages industriels, mais pour tout autres styles d'usages par le grand public.</p>
-          <p className='desc'>Découvrez sur notre site les articles les plus intéressants sur ce qui a été fait grâce à l'impression 3D !</p>
+          <p className='desc'>Avec l’impression 3D, il est devenu possible de réaliser des pièces en volume à partir d’un fichier numérique au moyen d’une imprimante. Ces pièces sont le plus souvent utilisées comme prototypes pour des usages industriels, mais pour tout autres styles d'usages par le grand public. Découvrez sur notre site les articles les plus intéressants sur ce qui a été fait grâce à l'impression 3D !</p>
           <button className='button' onClick={() => this.letsGo()}>ENTRER</button>
         </div>
       </div>
