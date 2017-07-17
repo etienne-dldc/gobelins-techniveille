@@ -9,7 +9,8 @@
     "dev": "better-npm-run dev",
     "build": "better-npm-run build",
     "build:prod": "better-npm-run build:prod",
-    "test": "better-npm-run test"
+    "test": "better-npm-run test",
+    "deploy": "yarn build && gh-pages -d dist"
   },
   "betterScripts": {
     "dev": {
@@ -62,6 +63,7 @@
     "debug": "^2.2.0",
     "es6-promise": "^3.1.2",
     "file-loader": "^0.8.5",
+    "gh-pages": "^1.0.0",
     "html-webpack-plugin": "^2.9.0",
     "node-sass": "^3.4.2",
     "phantomjs-polyfill": "0.0.2",
